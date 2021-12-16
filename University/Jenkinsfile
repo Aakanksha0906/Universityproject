@@ -9,23 +9,23 @@ pipeline{
         }
         stage('Build'){
           steps{
-             bat 'cd University && mvn compile'
+             sh 'cd University && mvn compile'
           }
         }
         stage('Test'){
           steps{
-            bat 'cd University && mvn test'
+            sh 'cd University && mvn test'
             }
         }
         stage('Package'){
           steps{
-            bat 'cd University && mvn package'
+            sh 'cd University && mvn package'
             }
         }
        
         stage('Deploy'){
            steps{
-            bat 'start /b java -jar "C:/Program Files (x86)/Jenkins/workspace/University/University/target/University-0.0.1-SNAPSHOT.jar"'
+            sh 'java -jar "/var/lib/jenkins/workspace/University/University/target/University-0.0.1-SNAPSHOT.jar"'
             }
         }
     }
