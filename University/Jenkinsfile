@@ -9,7 +9,7 @@ pipeline{
         }
         stage('Build'){
           steps{
-             sh 'cd University && mvn compile'
+             sh 'cd University && mvn compile -Dbuild.number=-${BUILD_NUMBER}'
           }
         }
         stage('Test'){
