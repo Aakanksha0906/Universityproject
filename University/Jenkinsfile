@@ -31,14 +31,14 @@ pipeline{
         // Building Docker images
         stage('Building docker image') {
           steps{
-             sh 'cd docker build -f Dockerfile -t univ' 
+             sh 'docker build -f Dockerfile -t univ' 
             
           }
         }
             // Running Docker container, make sure port 8005 is opened in 
         stage('Docker Run') {
             steps{
-               sh 'sudo dockerImage.run -d -p 8005:8005  univ'
+               sh 'dockerImage.run -d -p 8005:8005  univ'
              }
           }
         
