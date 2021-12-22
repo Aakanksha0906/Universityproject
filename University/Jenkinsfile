@@ -28,11 +28,24 @@ pipeline{
             sh 'java -jar "/var/lib/jenkins/workspace/University/University/target/University-0.0.1-SNAPSHOT.jar"&'
             }
         }
-    }
-        post {
-            always {
-                emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        // Building Docker images
+        stage('Building docker image') {
+          steps{
+            script {
+              dockerImage = sudo docker build -f Dockerfile -t univ 
             }
+          }
         }
+            // Running Docker container, make sure port 8005 is opened in 
+        stage('Docker Run') {
+         steps{
+             script {
+               sudo dockerImage.run -d -p 8005:8005  uni
+             }
+          }
+        }
+        
+    }
+        
     
 }
