@@ -31,7 +31,7 @@ pipeline{
         // Building Docker images
         stage('Building docker image') {
           steps{
-             sh 'sudo docker build -f Dockerfile -t univ .' 
+             sh 'cd University && sudo docker build -f Dockerfile -t univ .' 
             
           }
         }
